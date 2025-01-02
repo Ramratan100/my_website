@@ -1,0 +1,93 @@
+/* Reset default margins and padding */
+body, h2, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Global Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Title styling */
+h2 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Shipping Address Form */
+.shipping-form {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.shipping-form label {
+    font-size: 16px;
+    color: #333;
+}
+
+.shipping-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.shipping-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Button Styling */
+.btn-confirm {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-confirm:hover {
+    background-color: #218838;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    .shipping-form textarea {
+        padding: 10px;
+    }
+
+    .btn-confirm {
+        padding: 10px;
+    }
+}
