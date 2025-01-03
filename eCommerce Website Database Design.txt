@@ -1,0 +1,120 @@
+-- Create Database
+CREATE DATABASE eCommerceDB;
+
+-- Use the newly created database
+USE eCommerceDB;
+
+-- Create Users table
+CREATE TABLE Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    phone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Categories table
+CREATE TABLE Categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL,
+    description TEXT
+);
+
+-- Create Products table
+CREATE TABLE Products (
+    product_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    category_id INT,
+    stock INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    image_url VARCHAR(255),  -- Column to store the image URL for each product
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+);
+
+-- Create Orders table
+CREATE TABLE Orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    total_amount DECIMAL(10, 2),
+    status VARCHAR(50) DEFAULT 'Pending',
+    shipping_address VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+-- Create Order_Items table
+CREATE TABLE Order_Items (
+    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+
+-- Create Shipping table
+CREATE TABLE Shipping (
+    shipping_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    tracking_number VARCHAR(100),
+    shipping_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delivery_date TIMESTAMP,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+
+-- Create Payments table
+CREATE TABLE Payments (
+    payment_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    payment_method VARCHAR(50),
+    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payment_status VARCHAR(50) DEFAULT 'Pending',
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
+
+-- Insert sample data into Categories
+INSERT INTO Categories (category_name, description) VALUES
+('Electronics', 'Devices, gadgets, and more'),
+('Clothing', 'Fashion and apparel'),
+('Books', 'Fiction, non-fiction, and academic books'),
+('Home & Kitchen', 'Furniture and kitchen appliances');
+
+-- Insert sample data into Products
+INSERT INTO Products (name, description, price, category_id, stock, image_url) VALUES
+('Laptop', '14-inch laptop with 8GB RAM and 256GB SSD', 599.99, 1, 50, 'https://rukminim2.flixcart.com/image/312/312/xif0q/computer/g/s/e/yl613-thin-and-light-laptop-infinix-original-imah3525cvxzzpvp.jpeg?q=70'),
+('Smartphone', 'Latest model with 5G connectivity', 999.99, 1, 100, 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/k/l/l/-original-imagtc5fz9spysyk.jpeg?q=70'),
+('T-shirt', 'Cotton t-shirt in multiple colors', 19.99, 2, 200, 'https://rukminim2.flixcart.com/image/612/612/xif0q/t-shirt/w/1/a/l-tdgyvnful-d159-tripr-original-imah3r58pp6uervs.jpeg?q=70'),
+('Cookware Set', 'Stainless steel cookware set for home use', 120.99, 4, 30, 'https://rukminim2.flixcart.com/image/612/612/xif0q/cookware-set/m/f/i/-original-imah3nzdytgtuzag.jpeg?q=70');
+
+-- Insert sample data into Users
+INSERT INTO Users (username, email, password, first_name, last_name, phone) VALUES
+('john_doe', 'john.doe@example.com', 'hashed_password', 'John', 'Doe', '123-456-7890'),
+('jane_smith', 'jane.smith@example.com', 'hashed_password', 'Jane', 'Smith', '987-654-3210');
+
+-- Insert sample data into Orders
+INSERT INTO Orders (user_id, total_amount, shipping_address, status) VALUES
+(1, 639.98, '123 Elm St, Springfield', 'Completed'),
+(2, 199.98, '456 Oak St, Shelbyville', 'Pending');
+
+-- Insert sample data into Order_Items
+INSERT INTO Order_Items (order_id, product_id, quantity, price) VALUES
+(1, 1, 1, 599.99),
+(1, 3, 2, 19.99),
+(2, 2, 1, 999.99);
+
+-- Insert sample data into Shipping
+INSERT INTO Shipping (order_id, tracking_number, shipping_date, delivery_date) VALUES
+(1, 'ABC123456', '2025-01-02', '2025-01-05'),
+(2, 'XYZ987654', '2025-01-03', NULL);
+
+-- Insert sample data into Payments
+INSERT INTO Payments (order_id, payment_method, payment_date, amount, payment_status) VALUES
+(1, 'Credit Card', '2025-01-02', 639.98, 'Completed'),
+(2, 'PayPal', '2025-01-03', 999.99, 'Pending');

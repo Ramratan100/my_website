@@ -1,0 +1,87 @@
+/* Reset default margins and padding */
+body, h2, p, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Global body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Payment Method Form */
+.payment-form {
+    text-align: left;
+}
+
+/* Styling the radio button and label */
+.payment-option {
+    margin-bottom: 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-option input {
+    margin-right: 10px;
+    accent-color: #007bff;
+}
+
+.payment-option label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Submit Button */
+.btn-submit {
+    padding: 12px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+
+    .btn-submit {
+        padding: 10px 15px;
+    }
+}
