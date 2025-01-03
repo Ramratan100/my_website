@@ -264,7 +264,7 @@ $result = $conn->query($sql);
         </table>
 
         <br><br>
-        <a href="logout.php">Logout</a>
+        <a href="logout1.php">Logout</a>
     </div>
 </body>
 </html>
