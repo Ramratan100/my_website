@@ -12,7 +12,7 @@ try {
     // Set the PDO error mode to exception for better debugging
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    echo "Connection successful"; // Optional: You can confirm the connection if needed
+    echo "WELCOME!"; // Optional: You can confirm the connection if needed
 } catch (PDOException $e) {
     // Handle connection error
     echo "Connection failed: " . $e->getMessage();
@@ -25,7 +25,7 @@ if ($pdo) {
     echo '
     <html>
     <body>
-        <h2>Welcome to eCommerce Site</h2>
+        <h2>MYGURUKULAM Powered by OpsTree</h2>
         <form method="post">
             <input type="submit" name="action" value="Login" />
             <input type="submit" name="action" value="Register" />
